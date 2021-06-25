@@ -7,14 +7,14 @@ interface Service {
     url: string;
   };
 }
-export default function Services({ data }: { data: Service[] }) {
+export default function Services({ title="Title Goes Here", data, bg="", slug="#" }: { title:string, data: Service[], bg:string, slug:string }) {
   return (
-    <section id="services" className="py-24  h-screen">
+    <section id={slug} className={`py-24 ${bg}`}>
       <div className="transform scale-75 mx-auto px-5 max-w-screen-xl">
         <div className="text-center">
           <Fade down delay={300} distance="20px">
             <h2 className="mb-12 text-4xl text-gray-700 font-bold tracking-wide">
-              Our Services
+              {title.toUpperCase()}
             </h2>
           </Fade>
         </div>
@@ -27,14 +27,13 @@ export default function Services({ data }: { data: Service[] }) {
                 <div className="icon text-5xl">
                   
                     {" "}
-                    <img className="mb-4" src={s.icon.url} />
+                    <img className="mb-4 h-20 w-20" src={s.icon.url} />
                 </div>
                 <div>
              
                     {" "}
                     <h3 className="text-gray-800 font-semibold text-lg block mb-3 uppercase">
                       {s.name}
-                      {delay}
                     </h3>
                 
           
