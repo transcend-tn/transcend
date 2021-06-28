@@ -7,8 +7,8 @@ interface Technology {
 }
 export default function Technologies({ title, data }: { title:string, data: Technology[] }) {
   return (
-    <section id="technologies" className="bg-gray-50">
-    <div className="transform scale-75 bg-gray-50 py-20">
+    <section id="technologies" className="bg-gray-50 min-h-screen flex justify-center items-center">
+    <div className="transform scale-75 bg-gray-50">
     <div className="text-center">
           <Fade down delay={300} distance="20px">
             <h2 className="mb-12 text-4xl text-gray-700 font-bold tracking-wide">

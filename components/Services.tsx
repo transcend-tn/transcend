@@ -9,7 +9,7 @@ interface Service {
 }
 export default function Services({ title="Title Goes Here", data, bg="", slug="#" }: { title:string, data: Service[], bg:string, slug:string }) {
   return (
-    <section id={slug} className={`py-24 ${bg}`}>
+    <section id={slug} className={` ${bg} min-h-screen flex justify-center items-center`}>
       <div className="transform scale-75 mx-auto px-5 max-w-screen-xl">
         <div className="text-center">
           <Fade down delay={300} distance="20px">
