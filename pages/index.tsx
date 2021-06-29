@@ -1,22 +1,24 @@
 import { ChevronUpIcon } from "@heroicons/react/outline";
 import Head from "next/head";
-import Hero from "../components/Hero";
+import Contact from "../components/contact";
+import Hero from "../components/hero";
 import Services from "../components/services";
-import Technologies from "../components/Technologies";
+import Team from "../components/team";
+import Technologies from "../components/technologies";
 import {
   getSection,
   getServices,
   getTeam,
   getTechnologies,
   getValues,
-  getWorkflow,
+  getWorkflow
 } from "../lib/graphcms";
-import Team from "../components/Team";
-import Contact from "../components/contact";
-
 
 export async function getStaticProps() {
-  const hero = await getSection();
+  const hero = await getSection("transcend");
+  const servicesMeta = await getSection("services");
+  const workflowMeta = await getSection("workflow");
+  const valuesMeta = await getSection("values");
   const services = await getServices();
   const technologies = await getTechnologies();
   const workflow = await getWorkflow();
@@ -25,9 +27,12 @@ export async function getStaticProps() {
   return {
     props: {
       hero,
+      servicesMeta,
       services,
       technologies,
+      workflowMeta,
       workflow,
+      valuesMeta,
       values,
       team,
     },
@@ -35,9 +40,12 @@ export async function getStaticProps() {
 }
 export default function Home({
   hero,
+  servicesMeta,
   services,
   technologies,
+  workflowMeta,
   workflow,
+  valuesMeta,
   values,
   team,
 }) {
@@ -57,12 +65,12 @@ export default function Home({
         description={hero?.description}
         slug={hero?.slug}
       />
-      <Services slug="services" bg="" title="services" data={services} />
+      <Services bg="" meta={servicesMeta} data={services} />
       <Technologies title="technologies" data={technologies} />
-      <Services slug="workflow" bg="" title="workflow" data={workflow} />
-      <Services slug="values" bg="bg-gray-50" title="values" data={values} />
+      <Services bg="" meta={workflowMeta} data={workflow} />
+      <Services bg="bg-gray-50" meta={valuesMeta} data={values} />
       <Team data={team} />
-<Contact/>
+      <Contact />
       <a
         href="#"
         className="back-to-top w-10 h-10 fixed bottom-0 right-0 mb-5 mr-5 flex items-center justify-center rounded-full bg-gray-600 text-white text-lg z-20 duration-300 hover:bg-gray-400"

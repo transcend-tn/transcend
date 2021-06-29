@@ -8,7 +8,10 @@ interface TeamMember {
 }
 export default function Team({ data }: { data: TeamMember[] }) {
   return (
-    <section id={`team`} className={`min-h-screen flex justify-center items-center`}>
+    <section
+      id={`team`}
+      className={`min-h-screen flex justify-center items-center`}
+    >
       <div className="transform scale-75 mx-auto px-5 max-w-screen-xl bg-white dark:bg-gray-800">
         <Fade down delay={300} distance="20px">
           <p className="text-center text-3xl font-bold text-gray-800 dark:text-white">
@@ -22,8 +25,8 @@ export default function Team({ data }: { data: TeamMember[] }) {
         </Fade>
         <div className="flex items-center flex-col md:flex-row justify evenly">
           {data.map((t, delay) => (
-            <Fade right delay={delay * 300 + 300} distance="20px">
-              <div className="p-4">
+            <div key={t.name} className="p-4">
+              <Fade right delay={delay * 300 + 300} distance="20px">
                 <div className="text-center mb-4 opacity-90">
                   <a href="#" className="block relative">
                     <img
@@ -107,8 +110,8 @@ export default function Team({ data }: { data: TeamMember[] }) {
                     </svg>
                   </a>
                 </div>
-              </div>
-            </Fade>
+              </Fade>
+            </div>
           ))}
         </div>
       </div>
