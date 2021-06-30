@@ -25,7 +25,7 @@ export default function Technologies({
             </h2>
           </Fade>
         </div>
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 dark:bg-gray-700">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 dark:bg-gray-200">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
             {data.map((t, delay) => (
               <div key={t.name} className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
