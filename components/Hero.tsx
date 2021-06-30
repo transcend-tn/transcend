@@ -2,7 +2,7 @@ import Fade from "react-reveal/Fade";
 
 export default function Hero({ title, subtitle, description, slug }) {
   return (
-    <section id={slug} className="bg-gray-50 min-h-screen flex justify-center items-center">
+    <section id={slug} className="bg-gray-50 min-h-screen flex justify-center items-center dark:bg-gray-800 dark:text-white">
       <div className="transform scale-75 bg-gray-50 dark:bg-gray-800 flex relative z-20 items-center overflow-hidden">
         <div className="container mx-auto px-6 flex relative py-16">
           <div className="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20">

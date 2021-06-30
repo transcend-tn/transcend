@@ -10,9 +10,9 @@ export default function Team({ data }: { data: TeamMember[] }) {
   return (
     <section
       id={`team`}
-      className={`min-h-screen flex justify-center items-center`}
+      className={`min-h-screen flex justify-center items-center dark:bg-gray-700`}
     >
-      <div className="transform scale-75 mx-auto px-5 max-w-screen-xl bg-white dark:bg-gray-800">
+      <div className="transform scale-75 mx-auto px-5 max-w-screen-xl bg-white dark:bg-gray-700">
         <Fade down delay={300} distance="20px">
           <p className="text-center text-3xl font-bold text-gray-800 dark:text-white">
             OUR TEAM
