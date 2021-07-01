@@ -13,8 +13,11 @@ import {
   getValues,
   getWorkflow,
 } from "../lib/graphcms";
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-export async function getStaticProps() {
+
+export async function getStaticProps({ locale }) {
   const hero = await getSection("transcend");
   const servicesMeta = await getSection("services");
   const workflowMeta = await getSection("workflow");
@@ -26,6 +29,7 @@ export async function getStaticProps() {
   const team = await getTeam();
   return {
     props: {
+      ...(await serverSideTranslations(locale, ['common'])),
       hero,
       servicesMeta,
       services,
@@ -49,6 +53,7 @@ export default function Home({
   values,
   team,
 }) {
+  const { t } = useTranslation('common')
   return (
     <div>
       <Head>
@@ -61,7 +66,7 @@ export default function Home({
       </Head>
 
       <Hero
-        title={hero?.title}
+        title={t('hero-title')}
         subtitle={hero?.subtitle}
         description={hero?.description}
         slug={hero?.slug}
