@@ -11,7 +11,7 @@ import {
   getTeam,
   getTechnologies,
   getValues,
-  getWorkflow
+  getWorkflow,
 } from "../lib/graphcms";
 
 export async function getStaticProps() {
@@ -59,16 +59,17 @@ export default function Home({
           content="Transcend Cyberprise is Tunisian Software Company"
         />
       </Head>
+
       <Hero
         title={hero?.title}
         subtitle={hero?.subtitle}
         description={hero?.description}
         slug={hero?.slug}
       />
-      <Services bg="" meta={servicesMeta} data={services} />
+      <Services bg="dark:bg-gray-700" meta={servicesMeta} data={services} />
       <Technologies title="technologies" data={technologies} />
-      <Services bg="" meta={workflowMeta} data={workflow} />
-      <Services bg="bg-gray-50" meta={valuesMeta} data={values} />
+      <Services bg="dark:bg-gray-700" meta={workflowMeta} data={workflow} />
+      <Services bg="bg-gray-50 dark:bg-gray-800" meta={valuesMeta} data={values} />
       <Team data={team} />
       <Contact />
       <a
