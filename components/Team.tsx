@@ -19,11 +19,11 @@ export default function Team({ data }: { data: TeamMember[] }) {
           </p>
         </Fade>
         <Fade up delay={600} distance="20px">
-          <p className="text-center mb-12 text-xl font-normal text-gray-500 dark:text-gray-200">
-            Meat the best team in wolrd
+          <p className="text-center mt-3 mb-12 text-xl font-normal text-gray-500 dark:text-gray-400">
+          We offer a team of veteran developers, technical experts, and strategists who know the right questions to ask to get you on track with the right features, the perfect platform and the capacity to scale up your business.
           </p>
         </Fade>
-        <div className="flex items-center flex-col md:flex-row justify evenly">
+        <div className="flex justify-center items-center md:flex-row justify evenly">
           {data.map((t, delay) => (
             <div key={t.name} className="p-4">
               <Fade right delay={delay * 300 + 300} distance="20px">

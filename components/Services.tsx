@@ -70,9 +70,11 @@ export default function Services({
 
           {/* Services item */}
         </div>
+        <Fade up delay={2400} distance="20px">
         <span className="text-center font-light text-2xl dark:text-gray-500 text-gray-500">
           {meta.description}
         </span>
+        </Fade>
       </div>
     </section>
   );
