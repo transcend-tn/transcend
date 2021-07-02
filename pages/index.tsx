@@ -16,17 +16,17 @@ import {
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-
 export async function getStaticProps({ locale }) {
-  const hero = await getSection("transcend");
-  const servicesMeta = await getSection("services");
-  const workflowMeta = await getSection("workflow");
-  const valuesMeta = await getSection("values");
-  const services = await getServices();
-  const technologies = await getTechnologies();
-  const workflow = await getWorkflow();
-  const values = await getValues();
-  const team = await getTeam();
+  
+  const hero = await getSection("transcend", [locale, 'en']);
+  const servicesMeta = await getSection("services", [locale, 'en']);
+  const workflowMeta = await getSection("workflow", [locale, 'en']);
+  const valuesMeta = await getSection("values",[locale, 'en']);
+  const services = await getServices([locale, 'en']);
+  const technologies = await getTechnologies([locale, 'en']);
+  const workflow = await getWorkflow([locale, 'en']);
+  const values = await getValues([locale, 'en']);
+  const team = await getTeam([locale, 'en']);
   return {
     props: {
       ...(await serverSideTranslations(locale, ['common'])),
@@ -66,7 +66,7 @@ export default function Home({
       </Head>
 
       <Hero
-        title={t('hero-title')}
+        title={hero?.title}
         subtitle={hero?.subtitle}
         description={hero?.description}
         slug={hero?.slug}

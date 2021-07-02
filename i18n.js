@@ -1,10 +1,10 @@
 const NextI18Next = require("next-i18next").default;
 
 module.exports = new NextI18Next({
-  otherLanguages: ["ar"],
+  otherLanguages: ["fr"],
   defaultNS: "common",
   localeSubpaths: {
-    ar: "ar",
+    fr: "fr",
   },
   localePath: "public/static/locales",
 });

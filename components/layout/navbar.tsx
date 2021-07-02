@@ -14,6 +14,7 @@ import {
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { Fragment } from "react";
+import LanguageSwitcher from "../language-switcher";
 import ThemeSwitch from "../theme-switch";
 
 const navItems = [
@@ -82,7 +83,7 @@ export default function Navbar() {
                 <Popover.Group as="nav" className="hidden md:flex space-x-10">
                   {navItems.map((item) => (
                     <Link href={item.href} key={item.href}>
-                      <a className="px-3 py-2 rounded-md text-md font-medium text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-500">
+                      <a className="px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-500">
                         {item.name}
                       </a>
                     </Link>
@@ -90,12 +91,15 @@ export default function Navbar() {
                 </Popover.Group>
                 <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                   <Link href="#contact">
-                    <a className="uppercase flex-shrink-0 px-4 py-2 mr-3 text-base font-semibold text-white bg-gray-600 rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-purple-200">
+                    <a className="uppercase flex-shrink-0 px-4 py-2 mr-3 text-xs font-semibold text-white bg-gray-600 rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-purple-200">
                       Contact us
                     </a>
                   </Link>
+                </div>
+                <div className="hidden md:flex">
                   <ThemeSwitch />
                 </div>
+                <LanguageSwitcher />
               </div>
             </div>
 
