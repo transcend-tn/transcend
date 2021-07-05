@@ -1,5 +1,12 @@
 import Fade from "react-reveal/Fade";
-export default function Contact() {
+interface SectionMeta {
+  title: string;
+  subtitle: string;
+  description: string;
+  slug: string;
+}
+
+export default function Contact({meta}:{meta:SectionMeta}) {
   return (
     <section
       id="contact"
@@ -50,11 +57,10 @@ export default function Contact() {
         <Fade right delay={600} distance="20px">
           <div className="lg:w-1/3 md:w-1/2 bg-gray-50 dark:bg-gray-800 dark:text-gray-300 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
             <h2 className="text-gray-900 dark:text-gray-300 text-lg mb-1 font-medium title-font">
-              CONTACT US
+              {meta.title.toUpperCase()}
             </h2>
             <p className="leading-relaxed mb-5 text-gray-600 dark:text-gray-500">
-              Have an idea for an IT solution or looking for inspiration?
-              Contact us and together we can create the solution you need.
+              {meta.subtitle}
             </p>
 
             <div className="relative mb-4">
@@ -93,7 +99,7 @@ export default function Contact() {
               SEND
             </button>
             <p className="text-xs text-gray-500 mt-3 dark:text-gray-400">
-              Fill out the form above and we’ll get in touch within 24 hours
+             {meta.description}
             </p>
           </div>
         </Fade>
