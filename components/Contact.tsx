@@ -5,8 +5,23 @@ interface SectionMeta {
   description: string;
   slug: string;
 }
+export interface uiContact {
+  email_placeholder: string;
+  msg_label: string;
+  msg_value: string;
+  button_label: string;
+  address_label:string;
+  address_value:string;
+  phone_label:string;
+}
 
-export default function Contact({meta}:{meta:SectionMeta}) {
+export default function Contact({
+  meta,
+  ui,
+}: {
+  meta: SectionMeta;
+  ui: uiContact;
+}) {
   return (
     <section
       id="contact"
@@ -30,11 +45,10 @@ export default function Contact({meta}:{meta:SectionMeta}) {
             <div className="bg-white dark:bg-gray-800 dark:text-gray-300 relative flex flex-wrap py-6 rounded shadow-md">
               <div className="lg:w-1/2 px-6">
                 <h2 className="title-font font-semibold text-gray-900 dark:text-gray-300 tracking-widest text-xs">
-                  ADDRESS
+                  {ui.address_label}
                 </h2>
                 <p className="mt-1 text-gray-500">
-                  Rue Ribat, Imm Mfarrej 2ème Étage Bureau 201, 4000
-                  Sousse-Tunisie
+                  {ui.address_value}
                 </p>
               </div>
               <div className="lg:w-1/2 px-6 mt-4 lg:mt-0">
@@ -45,7 +59,7 @@ export default function Contact({meta}:{meta:SectionMeta}) {
                   contact@transcend.tn
                 </a>
                 <h2 className="title-font font-semibold text-gray-900 dark:text-gray-300 tracking-widest text-xs mt-4">
-                  PHONE
+                  {ui.phone_label}
                 </h2>
                 <p className="leading-relaxed text-gray-500">
                   (+216) 96 08 46 56
@@ -74,7 +88,7 @@ export default function Contact({meta}:{meta:SectionMeta}) {
                 type="email"
                 id="email"
                 name="email"
-                placeholder={"We use it to contact you"}
+                placeholder={ui.email_placeholder}
                 className="w-full bg-white rounded border border-gray-300 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
@@ -83,23 +97,21 @@ export default function Contact({meta}:{meta:SectionMeta}) {
                 htmlFor="message"
                 className="leading-7 text-sm text-gray-600 dark:text-gray-400"
               >
-                How can we help you?
+                {ui.msg_label}
               </label>
               <textarea
                 id="message"
                 name="message"
                 className="w-full bg-white rounded border border-gray-300 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                 defaultValue={""}
-                placeholder={
-                  "Tell us briefly about your project, or ask us anything"
-                }
+                placeholder={ui.msg_value}
               />
             </div>
             <button className="text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-lg">
-              SEND
+              {ui.button_label}
             </button>
             <p className="text-xs text-gray-500 mt-3 dark:text-gray-400">
-             {meta.description}
+              {meta.description}
             </p>
           </div>
         </Fade>

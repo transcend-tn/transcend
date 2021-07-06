@@ -2,13 +2,8 @@
 import { Popover, Transition } from "@headlessui/react";
 import {
   AnnotationIcon,
-  BadgeCheckIcon,
-  CursorClickIcon,
-  LightningBoltIcon,
   MenuIcon,
   PhoneIcon,
-  TrendingUpIcon,
-  UserGroupIcon,
   XIcon,
 } from "@heroicons/react/outline";
 import { useTheme } from "next-themes";
@@ -17,33 +12,6 @@ import { Fragment } from "react";
 import LanguageSwitcher from "../language-switcher";
 import ThemeSwitch from "../theme-switch";
 
-const navItems = [
-  {
-    name: "Services",
-    href: `/#services`,
-    icon: CursorClickIcon,
-  },
-  {
-    name: "Technologies",
-    href: `/#technologies`,
-    icon: LightningBoltIcon,
-  },
-  {
-    name: "How We Work",
-    href: `/#workflow`,
-    icon: TrendingUpIcon,
-  },
-  {
-    name: "Values",
-    href: `/#values`,
-    icon: BadgeCheckIcon,
-  },
-  {
-    name: "Team",
-    href: `/#team`,
-    icon: UserGroupIcon,
-  },
-];
 const callsToAction = [
   { name: "Blog", href: "/blog", icon: AnnotationIcon },
   { name: "Contact Sales", href: "/#contact", icon: PhoneIcon },
@@ -53,7 +21,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Navbar() {
+interface NavItem {
+  name: string;
+  href: string;
+}
+
+export default function Navbar({ navItems }: { navItems: NavItem[] }) {
   const { theme, setTheme } = useTheme();
   return (
     <div className="navigation top-0 left-0 w-full z-30 duration-300 sticky">
@@ -81,21 +54,31 @@ export default function Navbar() {
                   </Popover.Button>
                 </div>
                 <Popover.Group as="nav" className="hidden md:flex space-x-10">
-                  {navItems.map((item) => (
-                    <Link href={item.href} key={item.href}>
-                      <a className="px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-500">
-                        {item.name}
-                      </a>
-                    </Link>
-                  ))}
+                  {navItems.map((item) =>
+                    item.href != "#contact" ? (
+                      <Link href={item.href} key={item.href}>
+                        <a className="px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-500">
+                          {item.name}
+                        </a>
+                      </Link>
+                    ) : (
+                      <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                        <Link href={item.href}>
+                          <a className="uppercase flex-shrink-0 px-4 py-2 mr-3 text-xs font-semibold text-white bg-gray-600 rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-purple-200">
+                            {item.name}
+                          </a>
+                        </Link>
+                      </div>
+                    )
+                  )}
                 </Popover.Group>
-                <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+                {/* <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                   <Link href="#contact">
                     <a className="uppercase flex-shrink-0 px-4 py-2 mr-3 text-xs font-semibold text-white bg-gray-600 rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-purple-200">
                       Contact us
                     </a>
                   </Link>
-                </div>
+                </div> */}
                 <div className="hidden md:flex">
                   <ThemeSwitch />
                 </div>

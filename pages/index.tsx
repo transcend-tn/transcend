@@ -4,10 +4,13 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import Contact from "../components/contact";
 import Hero from "../components/hero";
+import Navbar from "../components/layout/navbar";
 import Services from "../components/services";
 import Team from "../components/team";
 import Technologies from "../components/technologies";
+import { uiContact } from '../components/contact';
 import {
+  getNavbar,
   getSection,
   getServices,
   getTeam,
@@ -16,7 +19,8 @@ import {
   getWorkflow,
 } from "../lib/graphcms";
 
-export async function getStaticProps({ locale }) {
+export async function getServerSideProps({ locale }) {
+  const navbarItems = await getNavbar([locale, "en"]);
   const hero = await getSection("transcend", [locale, "en"]);
   const servicesMeta = await getSection("services", [locale, "en"]);
   const workflowMeta = await getSection("workflow", [locale, "en"]);
@@ -31,6 +35,7 @@ export async function getStaticProps({ locale }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"])),
+      navbarItems,
       hero,
       servicesMeta,
       services,
@@ -46,6 +51,7 @@ export async function getStaticProps({ locale }) {
   };
 }
 export default function Home({
+  navbarItems,
   hero,
   servicesMeta,
   services,
@@ -58,13 +64,16 @@ export default function Home({
   team,
   contactMeta,
 }) {
-  const { t } = useTranslation("common");
-  const contact = {
-    emailPlaceholder: t("contact-email-placeholder"),
-    msgTitle: t("contact-message"),
-    msgPlaceholder: t("contact-message-placeholder"),
-    buttonCaption: t("contact-button"),
-  };
+  const { t } = useTranslation('common')
+  const contact:uiContact={
+    email_placeholder:t('We use it to contact you'),
+    msg_label:t('How can we help you?'),
+    msg_value:t('Tell us briefly about your project, or ask us anything'),
+    button_label:t('send'),
+    address_label:t('ADDRESS'),
+    address_value:t('Ribat Road, Mfarrej Building 2nd Floor Office 201, 4000 Sousse-Tunisia'),
+    phone_label:t('PHONE')
+  }
   return (
     <div>
       <Head>
@@ -75,7 +84,7 @@ export default function Home({
           content="Transcend Cyberprise is Tunisian Software Company"
         />
       </Head>
-
+      <Navbar navItems={navbarItems} />
       <Hero
         title={hero?.title}
         subtitle={hero?.subtitle}
@@ -91,7 +100,7 @@ export default function Home({
         data={values}
       />
       <Team meta={teamMeta} data={team} />
-      <Contact local={contact} meta={contactMeta} />
+      <Contact ui={contact} meta={contactMeta} />
       <a
         href="#"
         className="back-to-top w-10 h-10 fixed bottom-0 right-0 mb-5 mr-5 flex items-center justify-center rounded-full bg-gray-600 text-white text-lg z-20 duration-300 hover:bg-gray-400"

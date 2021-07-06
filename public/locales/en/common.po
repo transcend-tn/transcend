@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: i18next-conv\n"
+"mime-version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"POT-Creation-Date: 2021-07-06T12:23:31.350Z\n"
+"PO-Revision-Date: 2021-07-06T12:23:31.350Z\n"
+"Language: en\n"
+
+msgid "ADDRESS"
+msgstr "ADDRESS"
+
+msgid "Ribat Road, Mfarrej Building 2nd Floor Office 201, 4000 Sousse-Tunisia"
+msgstr "Ribat Road, Mfarrej Building 2nd Floor Office 201, 4000 Sousse-Tunisia"
+
+msgid "PHONE"
+msgstr "PHONE"
+
+msgid "We use it to contact you"
+msgstr "We use it to contact you"
+
+msgid "How can we help you?"
+msgstr "How can we help you?"
+
+msgid "Tell us briefly about your project, or ask us anything"
+msgstr "Tell us briefly about your project, or ask us anything"
+
+msgid "send"
+msgstr "send"
