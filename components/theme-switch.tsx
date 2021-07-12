@@ -8,20 +8,19 @@ export default function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
   const dark = theme === "dark" ? true : false;
   const [enabled, setEnabled] = useState(dark);
-  const handleChange = (nextChecked: boolean) => {
-    setEnabled(nextChecked);
-    gtag.event({
-      action: "Change Theme",
-      category: "UI",
-      label: "Theme Changed",
-      value: "Theme",
-    });
-  };
   useEffect(() => setEnabled(false), []);
   useEffect(() => {
     setTheme(enabled ? "dark" : "light");
   }, [enabled, setTheme]);
-
+  const handleChange = (nextChecked: boolean) => {
+    setEnabled(nextChecked);
+    gtag.event({
+      action: "CHANGE_THEME",
+      category: "UI",
+      label: "Theme Changed",
+      value: enabled ? "light" : "dark",
+    });
+  };
   return (
     <>
       <SunIcon className="h-5" />
