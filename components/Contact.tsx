@@ -1,5 +1,41 @@
+import { useEffect, useRef, useState } from "react";
 import Fade from "react-reveal/Fade";
+
+async function sendToApi(data) {
+  try {
+    await fetch("/api/contact", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    //if sucess do whatever you like, i.e toast notification
+  } catch (error) {
+    // toast error message. whatever you wish
+  }
+}
 export default function Contact() {
+  const [data, setData] = useState(null);
+  const emailRef = useRef(null);
+  const messageRef = useRef(null);
+
+  const sendMessage = () => {
+    if (emailRef.current.value !== "" && messageRef.current.value !== "") {
+      setData({
+        email: emailRef.current.value,
+        message: messageRef.current.value,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (data !== null) {
+      sendToApi(data);
+      emailRef.current.value = "";
+      messageRef.current.value = "";
+      setData(null);
+    }
+  }, [data]);
+
   return (
     <section
       id="contact"
@@ -47,6 +83,7 @@ export default function Contact() {
             </div>
           </div>
         </Fade>
+
         <Fade right delay={600} distance="20px">
           <div className="lg:w-1/3 md:w-1/2 bg-gray-50 dark:bg-gray-800 dark:text-gray-300 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
             <h2 className="text-gray-900 dark:text-gray-300 text-lg mb-1 font-medium title-font">
@@ -68,6 +105,7 @@ export default function Contact() {
                 type="email"
                 id="email"
                 name="email"
+                ref={emailRef}
                 placeholder={"We use it to contact you"}
                 className="w-full bg-white rounded border border-gray-300 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
@@ -82,6 +120,7 @@ export default function Contact() {
               <textarea
                 id="message"
                 name="message"
+                ref={messageRef}
                 className="w-full bg-white rounded border border-gray-300 focus:border-gray-500 focus:ring-2 focus:ring-gray-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                 defaultValue={""}
                 placeholder={
@@ -89,7 +128,10 @@ export default function Contact() {
                 }
               />
             </div>
-            <button className="text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-lg">
+            <button
+              onClick={sendMessage}
+              className="text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none hover:bg-gray-600 rounded text-lg"
+            >
               SEND
             </button>
             <p className="text-xs text-gray-500 mt-3 dark:text-gray-400">
