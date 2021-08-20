@@ -69,7 +69,11 @@ export default function Home({
       <Services bg="dark:bg-gray-700" meta={servicesMeta} data={services} />
       <Technologies title="technologies" data={technologies} />
       <Services bg="dark:bg-gray-700" meta={workflowMeta} data={workflow} />
-      <Services bg="bg-gray-50 dark:bg-gray-800" meta={valuesMeta} data={values} />
+      <Services
+        bg="bg-gray-50 dark:bg-gray-800"
+        meta={valuesMeta}
+        data={values}
+      />
       <Team data={team} />
       <Contact />
       <a
