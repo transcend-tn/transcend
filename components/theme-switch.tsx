@@ -3,6 +3,7 @@ import { MoonIcon, SunIcon } from "@heroicons/react/outline";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import * as gtag from "../lib/gtag";
+import classNames from "classnames";
 
 export default function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
@@ -27,15 +28,23 @@ export default function ThemeSwitch() {
       <Switch
         checked={enabled}
         onChange={handleChange}
-        className={`${
-          enabled ? "bg-gray-700" : "bg-yellow-400"
-        } mx-1 relative inline-flex items-center h-6 rounded-full w-11 dark:`}
+        className={classNames(
+          "mx-1 relative inline-flex items-center h-6 rounded-full w-11 dark:",
+          {
+            "bg-gray-700": enabled,
+            "bg-yellow-400": !enabled,
+          }
+        )}
       >
         <span className="sr-only">Enable notifications</span>
         <span
-          className={`${
-            enabled ? "translate-x-6" : "translate-x-1"
-          } inline-block w-4 h-4 transform bg-white rounded-full`}
+          className={classNames(
+            "inline-block w-4 h-4 transform bg-white rounded-full",
+            {
+              "translate-x-6": enabled,
+              "translate-x-1": !enabled,
+            }
+          )}
         />
       </Switch>
       <MoonIcon className="h-5" />

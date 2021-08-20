@@ -48,13 +48,15 @@ const callsToAction = [
   { name: "Blog", href: "/blog", icon: AnnotationIcon },
   { name: "Contact Sales", href: "/#contact", icon: PhoneIcon },
 ];
-function clicked(destination) {
+const goToSection = (destination) =>  {
+  return (event: React.MouseEvent) => {
   gtag.event({
     action: "SECTION",
     category: "Navigation",
     label: "Section Changed",
     value: destination,
   });
+}
 }
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -74,7 +76,7 @@ export default function Navbar() {
                     <a>
                       <span
                         className="sr-only"
-                        onClick={() => clicked("Transcend")}
+                        onClick={goToSection("Transcend")}
                       >
                         Transcend
                       </span>
@@ -95,7 +97,7 @@ export default function Navbar() {
                 <Popover.Group as="nav" className="hidden md:flex space-x-10">
                   {navItems.map((item) => (
                     <Link href={item.href} key={item.href}>
-                      <a onClick={() => clicked(item.name)} className="px-3 py-2 rounded-md text-md font-medium text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-500">
+                      <a onClick={goToSection(item.name)} className="px-3 py-2 rounded-md text-md font-medium text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-500">
                         {item.name}
                       </a>
                     </Link>
@@ -103,7 +105,7 @@ export default function Navbar() {
                 </Popover.Group>
                 <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                   <Link href="#contact">
-                    <a onClick={() => clicked("Contact")}className="uppercase flex-shrink-0 px-4 py-2 mr-3 text-base font-semibold text-white bg-gray-600 rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-purple-200">
+                    <a onClick={goToSection("Contact")}className="uppercase flex-shrink-0 px-4 py-2 mr-3 text-base font-semibold text-white bg-gray-600 rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-purple-200">
                       Contact us
                     </a>
                   </Link>

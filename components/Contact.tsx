@@ -23,6 +23,7 @@ export default function Contact() {
       setData({
         email: emailRef.current.value,
         message: messageRef.current.value,
+        toEmail: process.env.NEXT_PUBLIC_TRANSCEND_EMAIL
       });
     }
   };
